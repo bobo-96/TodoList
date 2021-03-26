@@ -13,9 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
+from rest_auth.views import LoginView
 from django.urls import path
+from rest_auth.registration.views import RegisterView
+
+from categories.views import CategoryView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('signin/', LoginView.as_view(), name='rest_login'),
+    path('signup/', RegisterView.as_view(), name='rest_register'),
+    # path('', CategoryView.as_view({'get': 'list'})),
+    path('category/create', CategoryView.as_view({'post': 'create'})),
+    path('category/<int:pk>', CategoryView.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'})),
+
+
+
 ]
