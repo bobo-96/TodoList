@@ -20,14 +20,17 @@ from django.urls import path
 from rest_auth.registration.views import RegisterView
 
 from categories.views import CategoryView
+from tasks.views import TaskView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signin/', LoginView.as_view(), name='rest_login'),
     path('signup/', RegisterView.as_view(), name='rest_register'),
-    # path('', CategoryView.as_view({'get': 'list'})),
+    path('', TaskView.as_view({'get': 'list'})),
     path('category/create', CategoryView.as_view({'post': 'create'})),
     path('category/<int:pk>', CategoryView.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'})),
+    path('task/create', TaskView.as_view({'post': 'create'})),
+    path('task/<int:pk>', TaskView.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'})),
 
 
 
