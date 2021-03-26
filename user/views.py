@@ -8,7 +8,7 @@ from user.serializers import UserSerializer
 
 
 class UserView(ModelViewSet):
-    queryset = User.objects.prefetch_related('post_owner')
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'pk'
     permission_classes = (IsUserOwnerOrReadOnly, )

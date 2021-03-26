@@ -21,5 +21,5 @@ class TaskSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = self.context.get('request').user
 
-        category = Task.objects.create(owner=user, **validated_data)
-        return category
+        task = Task.objects.create(owner=user, **validated_data)
+        return task
