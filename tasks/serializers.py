@@ -12,11 +12,15 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    owner = UserSerializer(read_only=True)
+    category_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Task
         fields = '__all__'
+        read_only_fields = ('owner',)
+
+    def get_category_name(self, obj):
+        return obj.category.title
 
     def create(self, validated_data):
         user = self.context.get('request').user

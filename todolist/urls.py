@@ -29,6 +29,7 @@ urlpatterns = [
     path('signup/', RegisterView.as_view(), name='rest_register'),
     path('user/<int:pk>', UserView.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'})),
     path('', TaskView.as_view({'get': 'list'})),
+    path('category/', CategoryView.as_view({'get': 'list'})),
     path('category/create', CategoryView.as_view({'post': 'create'})),
     path('category/<int:pk>', CategoryView.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'})),
     path('task/create', TaskView.as_view({'post': 'create'})),
